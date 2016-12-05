@@ -1,0 +1,25 @@
+/*!
+ * Start Bootstrap - Scrolling Nav (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+.navbar {
+    margin: 2%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+}
+
+.navbar-row {
+    margin-left: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+@media (max-width: 700px){
+    .navbar {
+        margin: 0px;
+    }
+}
+
