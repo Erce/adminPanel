@@ -17,8 +17,9 @@ $pass = sha1($_POST["password"]);
 //mysql_select_db("users", $server);
   
 /* SQL statement to query the database */
-$query = "SELECT id FROM users WHERE username = '$user'
-         AND password = '$pass'";
+$query = sprintf("SELECT id FROM users WHERE username = '%s' AND password = '%s'",
+            mysql_real_escape_string($user),
+            mysql_real_escape_string($pass));
 
 /* query the database */
 $result = mysql_query($query);

@@ -13,9 +13,7 @@ $pic=($_FILES['photo']['name']);
 
 
 // Connects to your Database
-
-mysql_connect("localhost", "root", "") or die(mysql_error()) ;
-mysql_select_db("users") or die(mysql_error()) ;
+require_once 'connect.php';
 
 //Writes the information to the database
 mysql_query("INSERT INTO products (name,photo)

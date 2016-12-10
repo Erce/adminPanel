@@ -125,22 +125,22 @@
             <div class="row">
                 <!--<div class="col-lg-1 col-sm-1 col-md-1"></div>-->
                 <?php if(isset($_GET['page']) && $_GET['page'] == 'add') : ?>
-                <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-left">
-                    <div class="row first-row">
-                        <div class="col-md-12 col-xs-18">
-                            <h4>YENİ EKLE</h4>
-                        </div>
-                    </div>
-                    <div class="row second-row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">   
-                            <div class="row" id="records-title">
-                                <div class="col-md-5 col-xs-5"></div>
-                                <div class="col-md-2 col-xs-2"><h2></h2></div>
-                                <div class="col-md-5 col-xs-5"></div>
+                <form id="firstform" method="post" action="add-photo.php" enctype="multipart/form-data">
+                    <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-left">
+                        <div class="row first-row">
+                            <div class="col-md-12 col-xs-18">
+                                <h4>YENİ EKLE</h4>
                             </div>
-                            <div id="records" class="message-div">
-                                <form method="post" action="add-photo.php" enctype="multipart/form-data">
+                        </div>
+                        <div class="row second-row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">   
+                                <div class="row" id="records-title">
+                                    <div class="col-md-5 col-xs-5"></div>
+                                    <div class="col-md-2 col-xs-2"><h2></h2></div>
+                                    <div class="col-md-5 col-xs-5"></div>
+                                </div>
+                                <div id="records" class="message-div">
                                     <br>
                                     <p>
                                     Başlık:
@@ -157,74 +157,132 @@
                                     </p>
                                     <input class="input-class form-control" type="text" name="date">
                                     <br/>
-                                    <input class="btn btn-default save-button" TYPE="submit" name="upload" title="Add data to the Database" value="Kaydet"/>
+                                    <input class="btn btn-default save-button" type="submit" name="upload" title="Add data to the Database" value="Kaydet" id="sliderSubmit"/>
                                     <a href="slider.php" class="btn btn-default save-button">İptal</a>                               
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-1"></div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-right">
-                    <div class="row first-row">
-                        <div class="col-md-12 col-xs-18">
-                            <h4>Resim Seç</h4>
+                            <div class="col-md-1"></div>
                         </div>
                     </div>
-                    <div class="row second-row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">   
-                            <div class="row" id="records-title">
-                                <div class="col-md-5 col-xs-5"></div>
-                                <div class="col-md-2 col-xs-2"><h2></h2></div>
-                                <div class="col-md-5 col-xs-5"></div>
-                            </div>
-                            <div id="records" class="message-div">
-                                <p>
-                                Fotoğraf seç:
-                                </p>
-                                <div class="image-upload">
-                                    <label for="file-input">
-                                        <img class="img-responsive logoff-image" src="./images/Add_image_icon.svg" height="30%" width="30%">
-                                    </label>
-                                    <input id="file-input" type="file" name="photo">
-                                </div>                                    
-                                <p>
-                                Değiştirmek istediğiniz logoyu seçiniz:
-                                <input type="radio" name="logo" value="mainLogo"> Ana Logo
-                                <input type="radio" name="logo" value="subLogo"> Alt Logo
-                                </p>
-                                <p>
-                                  Other Member Information:
-                                </p>
-                                <textarea rows="10" cols="35" name="aboutMember">
-                                </textarea>
-                                <p>
-                                  Please Enter any other Bands the Member has been in.
-                                </p>
-                                <p>
-                                  Other Bands:
-                                </p>
-                                <input type="text" name="otherBands" size=30 />
-                                <br/>
-                                <br/>
-                                <input class="btn btn-default save-button" TYPE="submit" name="upload" title="Add data to the Database" value="Kaydet"/>
+                    <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-right">
+                        <div class="row first-row">
+                            <div class="col-md-12 col-xs-18">
+                                <h4>ÖNIZLEME</h4>
                             </div>
                         </div>
-                        <div class="col-md-1"></div>
+                        <div class="row second-row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">   
+                                <div class="row" id="records-title">
+                                    <div class="col-md-5 col-xs-5"></div>
+                                    <div class="col-md-2 col-xs-2"><h2></h2></div>
+                                    <div class="col-md-5 col-xs-5"></div>
+                                </div>
+                                <div id="records" class="message-div">
+                                    <p>
+                                    Fotoğraf seç:
+                                    </p>
+                                    <div class="image-upload">
+                                        <label for="file-input">
+                                            <img id="image-preview" class="img-responsive logoff-image" src="./images/image_add.png">
+                                        </label>
+                                        <input id="file-input" type="file" name="photo">
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
                     </div>
-                </div>
+                </form>
+                <?php elseif(isset($_GET['page']) && $_GET['page'] == 'edit'): 
+                    include 'edit-photo.php';
+                    $photo = new photo();
+                    $photo-> editPhoto($_GET['id']);
+                ?>
+                <form id="firstform" method="post" action="update-photo.php" enctype="multipart/form-data">
+                    <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-left">
+                        <div class="row first-row">
+                            <div class="col-md-12 col-xs-18">
+                                <h4>YENİ EKLE</h4>
+                            </div>
+                        </div>
+                        <div class="row second-row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">   
+                                <div class="row" id="records-title">
+                                    <div class="col-md-5 col-xs-5"></div>
+                                    <div class="col-md-2 col-xs-2"><h2></h2></div>
+                                    <div class="col-md-5 col-xs-5"></div>
+                                </div>
+                                <div id="records" class="message-div">
+                                    <br>
+                                    <p>
+                                    Başlık:
+                                    </p>
+                                    <input class="input-class form-control" type="text" name="photoTitle" value="<?php echo $photo->getTitle(); ?>"/>
+                                    <br/>
+                                    <p>
+                                    Açıklama:
+                                    </p>
+                                    <input class="input-class form-control" type="text" name="photoDescription" value="<?php echo $photo->getDescription(); ?>"/>
+                                    <br/>
+                                    <p>
+                                    Tarih:
+                                    </p>
+                                    <input class="input-class form-control" type="text" name="date" value="<?php echo $photo->getDateFromDb(); ?>">
+                                    <input type="hidden" name="id" value="<?php echo $photo->getId(); ?>">
+                                    <br/>
+                                    <input class="btn btn-default save-button" type="submit" name="upload" title="Add data to the Database" value="Kaydet" id="sliderSubmit"/>
+                                    <a href="slider.php" class="btn btn-default save-button">İptal</a>                               
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-right">
+                        <div class="row first-row">
+                            <div class="col-md-12 col-xs-18">
+                                <h4>ÖNIZLEME</h4>
+                            </div>
+                        </div>
+                        <div class="row second-row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">   
+                                <div class="row" id="records-title">
+                                    <div class="col-md-5 col-xs-5"></div>
+                                    <div class="col-md-2 col-xs-2"><h2></h2></div>
+                                    <div class="col-md-5 col-xs-5"></div>
+                                </div>
+                                <div id="records" class="message-div">
+                                    <p>
+                                    Fotoğraf seç:
+                                    </p>
+                                    <div class="image-upload">
+                                        <label for="file-input">
+                                            <img id="image-preview" class="img-responsive logoff-image" src="./uploads/<?php echo $photo->getName(); ?>">
+                                        </label>
+                                        <input id="file-input" type="file" name="photo">
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </form>
                 <?php else: ?>
                 <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 main-container">
                     <div class="row first-row">
-                        <div class="col-md-11 col-xs-8">
+                        <div class="col-md-2 col-xs-2 col-xsl-12">
                             <h4>SLIDER</h4>
                         </div>
-                        <div class="col-md-1 col-xs-4">
+                        <div class="col-md-10 col-xs-10 col-xsl-4">
                             <a href="?page=add" id="add-slider">
-                                <img class="img-responsive add-slider-icon" src="./images/plus-icon.png" height="18px" width="18px">
-                                <h5 class="add-slider-text">Yeni Ekle</h5>
+                                <img class="img-responsive add-slider-icon" src="./images/plus-icon.png" height="45px" width="45px">       
                             </a>
+                            <img class="img-responsive delete-slider-icon" src="./images/delete.ico" height="45px" width="45px">
+                            <img class="img-responsive edit-slider-icon" src="./images/edit.png" height="45px" width="45px">
+                            <img class="img-responsive right-slider-icon" src="./images/right-arrow.png" height="45px" width="45px">
+                            <img class="img-responsive left-slider-icon" src="./images/left-arrow.png" height="45px" width="45px">
                         </div>
                     </div>
                     <div class="row second-row">
@@ -235,7 +293,7 @@
                                 <div class="col-md-5 col-xs-5"></div>
                             </div>
                             <div id="records" class="message-div">
-                                
+                                <?php require_once 'sliderphotolist.php'; ?>
                             </div>
                         </div>
                         <div class="col-md-1"></div>
@@ -256,5 +314,22 @@
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
         <script type="text/javascript" src="../bootstrap.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#image-preview').attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#file-input").change(function(){
+                readURL(this);
+            });        
+        </script>
     </body>
 </html>

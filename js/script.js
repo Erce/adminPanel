@@ -147,3 +147,105 @@ $(function() {
         });     
     });
 });
+
+
+//SLIDER SUBMIT
+
+    /*$(function () {
+        $('body').on('click','#sliderSubmit', function (event) {
+            
+            document.getElementById("firstform").submit();
+            document.getElementById("secondform").submit();
+            var file_data = $('#file-input').prop('files')[0];  
+            alert(file_data);
+            var formData = new FormData($(this)[0]);
+            alert(formData);
+            formData.append('photo', file_data);
+            alert(formData);
+            $.ajax({
+                type: 'post',
+                dataType: 'text',
+                cache: false,
+                url: 'add-photo.php',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function(php_script_response){
+                    alert(php_script_response);
+                }
+            });
+        });
+    });*/
+
+
+    $(function () {
+        $('.sliderphotobox').click(function (event) {
+            $id = $(this).attr('id');
+            $(".sliderphotobox").removeClass("sliderphotoboxfocus");
+            $('#'+ $id).addClass("sliderphotoboxfocus");
+        });
+    });
+    
+    
+    $(function () {
+        $('.delete-slider-icon').click(function (event) {
+            $id = $(".sliderphotoboxfocus").attr('id');
+            var formData = "id=" + $id.substring(11,$id.length);
+            alert($id);
+            if($id !== 'undefined') {
+                $row = '#' + $id;              
+                $.ajax({     
+                    type: 'post',
+                    url: 'delete-photo.php',
+                    data: formData,
+                    success: function(php_script_response){
+                        $($row).remove();
+                    }
+                });
+            }
+        });
+    });  
+    
+    $(function () {
+        $('.edit-slider-icon').click(function (event) {
+            $id = $(".sliderphotoboxfocus").attr('id');
+            var formData = "id=" + $id.substring(11,$id.length);
+            alert($id);
+            if($id !== 'undefined') {          
+                $.ajax({     
+                    type: 'post',
+                    url: 'edit-photo.php',
+                    data: formData,
+                    success: function(php_script_response){
+                        window.location.href = "?page=edit&" + formData;
+                    }
+                });
+            }
+        });
+    }); 
+    
+    /*
+    $(function () {
+        $('.sliderphotobox').click(function (event) {
+            document.getElementById("firstform").submit();
+            document.getElementById("secondform").submit();
+            var file_data = $('#file-input').prop('files')[0];  
+            alert(file_data);
+            var formData = new FormData($(this)[0]);
+            alert(formData);
+            formData.append('photo', file_data);
+            alert(formData);
+            $.ajax({
+                type: 'post',
+                dataType: 'text',
+                cache: false,
+                url: 'add-photo.php',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function(php_script_response){
+                    alert(php_script_response);
+                }
+            });
+        });
+    });*/
